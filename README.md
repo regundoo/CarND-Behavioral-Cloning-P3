@@ -164,7 +164,7 @@ However, the model is slightly addopted.
 
 The full architecture of the model is as follows:
 
-![alt text][image3]
+![alt text][image2]
 
 It was also tried to use some Dropout functions but this was not very effective. The batch generation helps to prevent overfitting 
 
@@ -180,7 +180,7 @@ The model was trained using Adam for optimizsation and the learn rate is set to 
 
 The accuracy loss is the following:
 
-![alt text][image2]
+![alt text][image3]
 
 To train the model for the second track, the data from that track have to be collected.
 
