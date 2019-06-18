@@ -1,13 +1,5 @@
 # **Behavioral Cloning** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Behavioral Cloning Project**
-
 The goals / steps of this project are the following:
 * Use the simulator to collect data of good driving behavior
 * Build, a convolution neural network in Keras that predicts steering angles from images
@@ -171,33 +163,21 @@ For all layers, the activation function is the ReLu function. ELU activation was
 
 ## Training And Results
 
-We trained the model using [Adam](https://www.quora.com/Can-you-explain-basic-intuition-behind-ADAM-a-method-for-stochastic-optimization) as the optimizer and a learning rate of 0.001. After much, tweaking of parameters, and experimentation of multiple models, we ended up with one that is able power our virtual car to drive autonomously on both tracks. 
+The model was trained using Adam for optimizsation and the learn rate is set to 0.001. After lots of traiing and tweaking of parameters, a model was created which drives the first track without any problems. The video can be found here:
 
+![alt text][image6]
 
-![Car Drives Autonomously On Track 1](media/nvidia_model_track1_drives_well.gif)
+The accuracy loss is the following:
 
-We can see how the vehicle effectively manages to drive down a steep slope on track 2.
+![alt text][image6]
 
-![Car Drives Autonomously On Track 2](media/nvidia_model_track_2_15MPH_10seconds.gif)
+To train the model for the second track, the data from that track have to be collected.
 
-
-We also show what the front camera sees when driving autonomously on track 2. We can see how the car tries to stick to the lane and not go in the middle, as we ourselves strived to drive on only one side of the road during our data collection phase. This shows the model has indeed learned to stay within its lane.
-
-![Front Camera Vision On Track 2](media/track_2_center_camera.gif)
 
 # Conclusion
 
-We have shown that it is possible to create a model that reliably predicts steering wheel angles for a vehicle using a deep neural network and a plethora of data augmentation techniques. While we have obtained encouraging results, we would like in the future to explore the following:
-* Take into account speed and throttle in the model
-* Get the car to drive faster than 15-20MPH
-* Experiment with models based VGG/ResNets/Inception via transfer learning
-* Use Recurrent Neural Networks like in this [paper](http://cs231n.stanford.edu/reports/2017/pdfs/626.pdf) from people using the Udacity dataset
-* Experiment with Reinforcement Learning
+There are several different ways to perform better results from training:
+* create better input data. Creating data without the keyboard creats much smoother data. This will lead to better in put values
+* use data from the second track. Additional data can be used to create even more data from the second track. Since the lighting is changing in this scene, image preprocessing becomes very important. A random shadwo can be added to the images to prevent the model to get scared of such lighting changes.
+* Speed and throttle can be implemented into the trained model. This will lead to a faster and smoother driving speed.
 
-As can be seen, there are many areas we could explore to push this project further and obtain even more convincing results.
-
-From a personal perspective, I have tremendously enjoyed this project, the hardest so far, as it enabled me to gain more practical experience of hyperparameter tweaking, data augmentation, and dataset balancing among other important concepts. I feel my intuition of neural network architectures has deepened as well. 
-
-# Acknowledgements
-
-I would also like to thank to thank my Udacity mentor Dylan for his support and sound advice, as well as the Udacity students before my cohort who explained how they approached this project via blog posts.
