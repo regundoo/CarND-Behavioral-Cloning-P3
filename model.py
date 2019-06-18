@@ -13,11 +13,11 @@ from keras.callbacks import EarlyStopping
 from keras.layers import Lambda, Conv2D, MaxPooling2D, Dropout, Dense, Flatten, Cropping2D
 from keras.constraints import maxnorm
 
-DATA_PATH = './Data3'
+DATA_PATH = './Data'
 # Load the training data and split them into a smaller validation set with test size of 80% and the remaining 20% for valid
 driving_log = []
 def loadData(data_path):
-    with open('./Data3/driving_log.csv') as csvfile:
+    with open('./Data/driving_log.csv') as csvfile:
         reader = csv.reader(csvfile)
         for line in reader:
             driving_log.append(line)
@@ -113,7 +113,7 @@ def train_model(model, train_generator, validation_generator, d_train, d_valid, 
                     validation_data=validation_generator,nb_val_samples=len(d_valid)*6, 
                     nb_epoch=5, verbose=1)
     # save the model
-    model.save('model46.h5')
+    model.save('model.h5')
     return history_object
     
 def main():
