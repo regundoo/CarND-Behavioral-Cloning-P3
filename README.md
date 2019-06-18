@@ -182,7 +182,7 @@ For all layers, the activation function is the ReLu function. ELU activation was
 
 ## Training And Results
 
-The model was trained using Adam for optimizsation and the learn rate is set to 0.001. After lots of traiing and tweaking of parameters, a model was created which drives the first track without any problems. The video can be found here:
+The model was trained using Adam for optimizsation. After lots of traiing and tweaking of parameters, a model was created which drives the first track without any problems. The video can be found here:
 
 ![video][video1]
 
@@ -190,7 +190,6 @@ The accuracy loss is the following:
 
 ![alt text][image3]
 
-To train the model for the second track, the data from that track have to be collected.
 
 
 # Conclusion
