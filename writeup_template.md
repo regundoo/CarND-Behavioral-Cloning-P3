@@ -19,9 +19,9 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./WriteUp_Images/nvidia_cnn_architecture.png "Model Visualization"
-[image2]: ./WriteUp_Images/ModelBash.jpg "model visu"
-[image3]: ./WriteUp_Images/DataSet3Epoch4.jpg "traiing Save"
-[image4]: ./WriteUp_Images/steeringAngles.jpg "Recovery Image"
+[image2]: ./WriteUp_Images/ModelBash.png "model visu"
+[image3]: ./WriteUp_Images/DataSet3Epoch4.png "traiing Save"
+[image4]: ./WriteUp_Images/steeringAngles.png "Recovery Image"
 [image5]: ./WriteUp_Images/placeholder_small.png "Recovery Image"
 [image6]: ./WriteUp_Images/placeholder_small.png "Normal Image"
 [image7]: ./WriteUp_Images/placeholder_small.png "Flipped Image"
