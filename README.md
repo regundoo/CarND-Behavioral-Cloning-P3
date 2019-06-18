@@ -155,7 +155,7 @@ The full architecture of the model is as follows:
 
 ![alt text][image6]
 
-Some dropout functions are used to prevent overfitting of the model.
+It was also tried to use some Dropout functions but this was not very effective. The batch generation helps to prevent overfitting 
 
 ## Activations And Regularization
 
