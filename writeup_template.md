@@ -26,10 +26,6 @@ The goals / steps of this project are the following:
 [image6]: ./WriteUp_Images/placeholder_small.png "Normal Image"
 [image7]: ./WriteUp_Images/placeholder_small.png "Flipped Image"
 
-DataSet3Epoch4.JPG	WriteUp_Images	27 seconds ago
-ModelBash.JPG	WriteUp_Images	27 seconds ago
-nvidia_cnn_architecture.png	WriteUp_Images	27 seconds ago
-steeringAngles.JPG
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -103,6 +99,11 @@ The final model architecture (model.py lines 18-24) consisted of a convolution n
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
 ![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
