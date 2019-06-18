@@ -44,20 +44,71 @@ My project includes the following files:
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
-python drive.py model42.h5
+python drive.py model.h5
 ```
 
 #### 3. Submission code is usable and readable
 
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works. Different training sets are used to variate the input of the model. Therefore, different input files are used in the code.
 
 ### Model Architecture and Training Strategy
+
+#### 1. Datasets
+
+The model used in this excersise uses data from the provided siumulator. We ended up with 3 different datasets for training:
+1. Udacity's dataset on track 1 
+2. Manually created dataset on track 1
+3. Manually created dataset where the car was driven the other way around the track and some "recovery" modes where performed 
+
+All collected data sets are combined to one big data package and one csv file with the measurements.
+
+#### 2. Dataset Exploration
+
+The measurements of the steering angles are very inconsistant, since the keyboard is used as an input. The model acts very incinsistant to such kind of data. As also seen in the image below, we have a huge amount of measurements with a "0" degree angle. Therefore, the model is overtrained to drive straigth.
+
+![alt text][image4]
+
+#### 3. Dataset Split
+
+From the collected data set, a validation set is split up to validate the trained model. The "train_test_split" function is used for that purpous. The set is split into parts of 80% training data and 20% validation data.
+
+```
+d_train, d_valid = train_test_split(driving_log, test_size=0.2, random_state=42)
+```
+This gives us 10510 data points for training and 2628 data points for validation. The number of points in the two sets will be increased later on with image processing.
+
+#### 4. Camera And Steering Wheel Angle Calibration
+
+As known from the image capturing, the cameras on the side of the car collect a different point of few from the scene. Therefore, the steering angle for those measurements have to be addapted.
+
+![alt text][image4]
+
+First of all, we add a correction value to images captured by either left or right cameras:
+* for the left camera we want the car to steer to the right (positive offset)
+* for the right camera we want the car to steer to the left (negative offset)
+
+```
+ if i==1:
+    measurement = measurement + 0.25
+ elif i==2:
+    measurement = measurement - 0.25
+```
+
+
+#### 5. Image Horizontal Flip
+
+To increase the amount of training and validation data without driving many times around the track, we use a image flip on every defined training image. This gives us 6 times the data we hade before. We are flipping the images from the center camera and also the images from the side cameras. This leads to a total amound of 63060 data points for training.
+
 
 #### 1. An appropriate model architecture has been employed
 
 My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
 
 The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+
+
+
+
 
 #### 2. Attempts to reduce overfitting in the model
 
@@ -140,88 +191,6 @@ Over the recent years, and more particularly since the success of the [Darpa Gra
 In this writeup, we are going to cover how we can get train a deep learning model to predict steering wheel angles and help a virtual vehicle drive itself in a simulator. The model is created using Keras, relying on Tensorflow as the backend. This is project 3 of Term 1 of the [Udacity Self-Driving Car Engineer Nanodegree](https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd013). 
 
 
-# Project Setup
-As part of this project, we are provided a simulator, written with Unity, that comes in two modes:
-* _Training Mode_, where we manually drive the vehicle and collect data
-* _Autonomous Mode_, where the vehicle drives itself based on the data collected
-
-The data log is saved in a csv file and contains the path to the images as well as steering wheel angle, throttle. We are only concerned with the steering wheel angle and the images for this project.
-
-As can be seen in the image below, the simulator contains 2 track. The track on the right (track 2) is much more difficult than track 1 as it contains slopes and sharp turns.
-
-![udacity Simulator Default Screen](media/simulator_default_screen.png)
-
-This project was in fact inspired by the paper "[End To End Learning For Self Driving Cars](https://arxiv.org/abs/1604.07316)" by researchers at Nvidia, who managed to get a car to drive automously by training a convolutional neural network to predict steering wheel angles based on the latter and images captured by three cameras (left, center, right) mounted in front of the car. The trained model is able to accurately steer the car using only the center camera. The diagram below shows the process used to create such a model
-
-![Diagram Of NVIDIA Approach](media/nvidia_end_end_learning_for_sdc_diagram.png)
- 
- Unlike Nvidia, who were doing real-world autonomous driving, we are going to teach our car to drive in the simulator. However, the same principles should apply.
-
-# Datasets
-
-We ended up using 4 datasets:
-
-1. Udacity's dataset on track 1 
-2. Our manually created dataset on track 1
-3. Another manually created dataset on track one where we drive close to the bounds and _recover_ to teach the model how to avoid ging out of bounds
-4. A manually created dataset on track 2
-
-Note that in all our manually created datasets, **we drive in both directions** to help our model generalise.
-
-## Dataset Exploration
-
-However, upon analysing the steering angles captured across our datasets, we quickly realised we had a problem:  the data is greatly imbalanced, with an overwhelming number of steering wheel data being neutral (i.e. 0). **This means, that unless we take corrective steps, our model will be biased to driving straight.**
-
-![Steering Wheel Angle Distribution Across Datasets](media/steering_wheel_angle_distribution.png)
-
-Notice however, that the data on track two shows a lot more variability with many _sharp_ turns, as we would expect from such a track. There is still a strong bias towards driving straight though, even in this case.
-
-## Dataset Split
-
-In the end, we decided to create an _ensemble_ training dataset composed of the Udacity dataset, our _Recovery_ dataset, and our dataset from track 2. We decided to use the _Standard_ dataset from track 1 as the validation set.
-
-```
-frames = [recovery_csv, udacity_csv, track2_csv]
-ensemble_csv = pd.concat(frames)
-validation_csv = standard_csv
-```
-
-This helped us start with close to 55K training images and potentially 44K validation ones.
-
-# Data Augmentation
-
-We have a good number of data points, but sadly as most of the them show the car driving with a neutral steering wheel angle, our model would tend to drive itself in a straight line. The example below shows our first model with no balancing of the training dataset:
-
-![First Model Driving Straight](media/nvidia_model_no_corrections.gif)
-
-Moreover, on the tracks there are also shadows which could throw the model into confusion. The model would also need to learn to steering correctly whether the car is on the left or right side of the road. Therefore, **we must find a way to artificially increase and vary our images and steering wheel angles**. We turn to data augmentation techniques for this purpose.
-
-## Camera And Steering Wheel Angle Calibration
-
-First of all, we add a _steering wheel angle calibration offset_ to images captured by either left or right cameras:
-* for the left camera we want the car to steer to the right (positive offset)
-* for the right camera we want the car to steer to the left (negative offset)
-
-```
-st_angle_names = ["Center", "Left", "Right"]
-st_angle_calibrations = [0, 0.25, -0.25]
-```
-
-The values above are empirically chosen.
-
-## Image Horizontal Flip
-
-Since we want our car to be able to steer itself regardless of its position on the road, we apply a horizontal flip to a proportion of images, and naturally invert the original steering angle:
-
-```
-def fliph_image(img):
-    """
-    Returns a horizontally flipped image
-    """
-    return cv2.flip(img, 1)
-```
-
-![Original vs Flipped Image](media/original_and_hflipped_images.png)
 
 ## Darken Image
 
