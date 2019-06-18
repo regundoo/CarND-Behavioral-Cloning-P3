@@ -77,13 +77,13 @@ As known from the image capturing, the cameras on the side of the car collect a 
 
 ![alt text][image5]
 
-Center Image
+Center Image  
 ![alt text][image6]  
 
-Left Image
+Left Image  
 ![alt text][image7]
 
-Right Image
+Right Image  
 ![alt text][image8]
 
 First of all, we add a correction value to images captured by either left or right cameras:
@@ -165,6 +165,13 @@ However, the model is slightly addopted.
 The full architecture of the model is as follows:
 
 ![alt text][image2]
+
+* After the Cropping layer, two lambda layers are added to normalize the images and to reshape them to the mentioned values.
+* The next steps are 5 Conv2D layers with different output shapes
+* After flatten the model, the last 4 layers are for Dense the model. 
+* Output node has the shape 1
+
+All in all, 252,219 parameters are trained for this model.
 
 It was also tried to use some Dropout functions but this was not very effective. The batch generation helps to prevent overfitting 
 
