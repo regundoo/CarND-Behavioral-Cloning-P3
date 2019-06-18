@@ -1,7 +1,7 @@
 # **Behavioral Cloning** 
 
 The goals / steps of this project are the following:
-* Use the simulator to collect data of good driving behavior
+* Use the simulator to collect data of good driving behaviour
 * Build, a convolution neural network in Keras that predicts steering angles from images
 * Train and validate the model with a training and validation set
 * Test that the model successfully drives around track one without leaving the road
@@ -50,7 +50,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 #### 1. Datasets
 
-The model used in this excersise uses data from the provided siumulator. We ended up with 3 different datasets for training:
+The model used in this exercise uses data from the provided simulator. We ended up with 3 different datasets for training:
 1. Udacity's dataset on track 1 
 2. Manually created dataset on track 1
 3. Manually created dataset where the car was driven the other way around the track and some "recovery" modes where performed 
@@ -59,26 +59,26 @@ All collected data sets are combined to one big data package and one csv file wi
 
 #### 2. Dataset Exploration
 
-The measurements of the steering angles are very inconsistant, since the keyboard is used as an input. The model acts very incinsistant to such kind of data. As also seen in the image below, we have a huge amount of measurements with a "0" degree angle. Therefore, the model is overtrained to drive straigth.
+The measurements of the steering angles are very inconsistent, since the keyboard is used as an input. The model acts very inconsistent to such kind of data. As also seen in the image below, we have a huge amount of measurements with a "0" degree angle. Therefore, the model is overtrained to drive straight.
 
 ![alt text][image4]
 
 #### 3. Dataset Split
 
-From the collected data set, a validation set is split up to validate the trained model. The "train_test_split" function is used for that purpous. The set is split into parts of 80% training data and 20% validation data.
+From the collected data set, a validation set is split up to validate the trained model. The "train_test_split" function is used for that purpose. The set is split into parts of 80% training data and 20% validation data.
 
 ```
 d_train, d_valid = train_test_split(driving_log, test_size=0.2, random_state=42)
 ```
-This gives us 10510 data points for training and 2628 data points for validation. The number of points in the two sets will be increased later on with image processing.
+This gives us 10510 data points for training and 2628 data points for validation. The number of points in the two sets will be increased later with image processing.
 
-#### 4. Camera And Steering Wheel Angle Calibration
+#### 4. Camera and Steering Wheel Angle Calibration
 
-As known from the image capturing, the cameras on the side of the car collect a different point of few from the scene. Therefore, the steering angle for those measurements have to be addapted.
+As known from the image capturing, the cameras on the side of the car collect a different point of few from the scene. Therefore, the steering angle for those measurements must be adapted.
 
 ![alt text][image5]
 
-Center Image  
+Centre Image  
 ![alt text][image6]  
 
 Left Image  
@@ -87,7 +87,7 @@ Left Image
 Right Image  
 ![alt text][image8]
 
-First of all, we add a correction value to images captured by either left or right cameras:
+First, we add a correction value to images captured by either left or right cameras:
 * for the left camera we want the car to steer to the right (positive offset)
 * for the right camera we want the car to steer to the left (negative offset)
 
@@ -100,12 +100,12 @@ First of all, we add a correction value to images captured by either left or rig
 
 #### 5. Image Horizontal Flip
 
-To increase the amount of training and validation data without driving many times around the track, we use a image flip on every defined training image. This gives us 6 times the data we hade before. We are flipping the images from the center camera and also the images from the side cameras. This leads to a total amound of 63060 data points for training.
+To increase the amount of training and validation data without driving many times around the track, we use an image flip on every defined training image. This gives us 6 times the data we had before. We are flipping the images from the centre camera and the images from the side cameras. This leads to a total amount of 63060 data points for training.
 
 
 #### 6. Keras Image Generator
 
-We are generating new and agmented images on the fly as we train the model. This gives us some advantages in the starage for the model. We are not loading all the data at once in the memory. The mentioned image flip happens in the data generator.
+We are generating new and augmented images on the fly as we train the model. This gives us some advantages in the storage for the model. We are not loading all the data at once in the memory. The mentioned image flip happens in the data generator.
 
 ```
 def generator(samples, batch_size=32):
@@ -159,7 +159,7 @@ The initially used model is a NVIDIA research model with few modifications. The 
 However, the model is slightly addopted.
 * A crop of the image is added. Since we know that we do not need the top of the images for training. This could confuse the model
 * The size of the images is reshaped to 66x200
-* The images are normalized
+* The Images are normalized
 
 ## Model Architecture
 
@@ -169,20 +169,20 @@ The full architecture of the model is as follows:
 
 * After the Cropping layer, two lambda layers are added to normalize the images and to reshape them to the mentioned values.
 * The next steps are 5 Conv2D layers with different output shapes
-* After flatten the model, the last 4 layers are for Dense the model. 
+* After flattening the model, the last 4 layers are for Dense the model. 
 * Output node has the shape 1
 
 All in all, 252,219 parameters are trained for this model.
 
-It was also tried to use some Dropout functions but this was not very effective. The batch generation helps to prevent overfitting 
+It was also tried to use some Dropout functions, but this was not very effective. The batch generation helps to prevent overfitting 
 
-## Activations And Regularization
+## Activations and Regularization
 
 For all layers, the activation function is the ReLu function. ELU activation was also tried but ReLu gives the best results for training. 
 
-## Training And Results
+## Training and Results
 
-The model was trained using Adam for optimizsation. After lots of traiing and tweaking of parameters, a model was created which drives the first track without any problems. The video can be found here:
+The model was trained using Adam for optimisation. After lots of training and tweaking of parameters, a model was created which drives the first track without any problems. The video can be found here:
 
 ![video][video1]
 
@@ -195,7 +195,6 @@ The accuracy loss is the following:
 # Conclusion
 
 There are several different ways to perform better results from training:
-* create better input data. Creating data without the keyboard creats much smoother data. This will lead to better in put values
-* use data from the second track. Additional data can be used to create even more data from the second track. Since the lighting is changing in this scene, image preprocessing becomes very important. A random shadwo can be added to the images to prevent the model to get scared of such lighting changes.
+* create better input data. Creating data without the keyboard creates much smoother data. This will lead to better in put values
+* use data from the second track. Additional data can be used to create even more data from the second track. Since the lighting is changing in this scene, image pre-processing becomes very important. A random shadow can be added to the images to prevent the model to get scared of such lighting changes.
 * Speed and throttle can be implemented into the trained model. This will lead to a faster and smoother driving speed.
-
