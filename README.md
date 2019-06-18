@@ -11,16 +11,26 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./WriteUp_Images/nvidia_cnn_architecture.png "Model Visualization"
-[image2]: ./WriteUp_Images/ModelBash.png "model visu"
-[image3]: ./WriteUp_Images/DataSet3Epoch4.png "traiing Save"
-[image4]: ./WriteUp_Images/steeringAngles.png "Recovery Image"
-[image5]: ./WriteUp_Images/placeholder_small.png "Recovery Image"
-[image6]: ./WriteUp_Images/placeholder_small.png "Model Architecture"
-[image7]: ./WriteUp_Images/placeholder_small.png "Flipped Image"
+[image2]: ./WriteUp_Images/ModelBash.PNG "model visu"
+[image3]: ./WriteUp_Images/DataSet3Epoch4.PNG "traiing Save"
+[image4]: ./WriteUp_Images/steeringAngles.PNG "Recovery Image"
+[image5]: ./WriteUp_Images/cameraAngle.PNG "Recovery Image"
+[image6]: ./WriteUp_Images/center.jpg "center"
+[image7]: ./WriteUp_Images/left.jpg "left Image"
+[image8]: ./WriteUp_Images/right.jpg "right Image"
 
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+
+![alt text][image1]
+![alt text][image2]
+![alt text][image3]
+![alt text][image4]
+![alt text][image5]
+![alt text][image6]
+![alt text][image7]
+![alt text][image8]
 
 ---
 ### Files Submitted & Code Quality
