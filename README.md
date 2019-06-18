@@ -23,14 +23,6 @@ The goals / steps of this project are the following:
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
-![alt text][image1]
-![alt text][image2]
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-![alt text][image6]
-![alt text][image7]
-![alt text][image8]
 
 ---
 ### Files Submitted & Code Quality
@@ -83,7 +75,16 @@ This gives us 10510 data points for training and 2628 data points for validation
 
 As known from the image capturing, the cameras on the side of the car collect a different point of few from the scene. Therefore, the steering angle for those measurements have to be addapted.
 
-![alt text][image4]
+![alt text][image5]
+
+Center Image
+![alt text][image6]  
+
+Left Image
+![alt text][image7]
+
+Right Image
+![alt text][image8]
 
 First of all, we add a correction value to images captured by either left or right cameras:
 * for the left camera we want the car to steer to the right (positive offset)
@@ -163,7 +164,7 @@ However, the model is slightly addopted.
 
 The full architecture of the model is as follows:
 
-![alt text][image6]
+![alt text][image3]
 
 It was also tried to use some Dropout functions but this was not very effective. The batch generation helps to prevent overfitting 
 
@@ -179,7 +180,7 @@ The model was trained using Adam for optimizsation and the learn rate is set to 
 
 The accuracy loss is the following:
 
-![alt text][image6]
+![alt text][image2]
 
 To train the model for the second track, the data from that track have to be collected.
 
