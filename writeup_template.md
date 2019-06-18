@@ -18,13 +18,18 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./WriteUp_Images/nvidia_cnn_architecture.png "Model Visualization"
+[image2]: ./WriteUp_Images/ModelBash.jpg "model visu"
+[image3]: ./WriteUp_Images/DataSet3Epoch4.jpb "traiing Save"
+[image4]: ./WriteUp_Images/steeringAngles.jpg "Recovery Image"
+[image5]: ./WriteUp_Images/placeholder_small.png "Recovery Image"
+[image6]: ./WriteUp_Images/placeholder_small.png "Normal Image"
+[image7]: ./WriteUp_Images/placeholder_small.png "Flipped Image"
+
+DataSet3Epoch4.JPG	WriteUp_Images	27 seconds ago
+ModelBash.JPG	WriteUp_Images	27 seconds ago
+nvidia_cnn_architecture.png	WriteUp_Images	27 seconds ago
+steeringAngles.JPG
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
