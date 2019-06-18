@@ -18,6 +18,7 @@ The goals / steps of this project are the following:
 [image6]: ./WriteUp_Images/center.jpg "center"
 [image7]: ./WriteUp_Images/left.jpg "left Image"
 [image8]: ./WriteUp_Images/right.jpg "right Image"
+[video1]: ./video.mp4 "video"
 
 
 ## Rubric Points
@@ -183,7 +184,7 @@ For all layers, the activation function is the ReLu function. ELU activation was
 
 The model was trained using Adam for optimizsation and the learn rate is set to 0.001. After lots of traiing and tweaking of parameters, a model was created which drives the first track without any problems. The video can be found here:
 
-![alt text][image6]
+![video][video1]
 
 The accuracy loss is the following:
 
